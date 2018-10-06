@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+	xmlns:mx="library://ns.adobe.com/flex/mx"
+	width="100%" height="100%"
+	creationComplete="application1_creationCompleteHandler(event)">
+	<fx:Declarations>
+	</fx:Declarations>
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle"/>
+	</s:layout>
+	<s:BorderContainer backgroundColor="#818181" contentBackgroundColor="#FB0000" borderColor="#00437C" 
+		borderWeight="6" cornerRadius="4" 
+		width="300" height="100">
+		<s:layout>
+			<s:HorizontalLayout horizontalAlign="center" verticalAlign="middle"/>
+		</s:layout>
+		<s:Button id="en" label="english" click="en_clickHandler(event)"/>
+		<s:Button id="pl" label="polish" click="pl_clickHandler(event)"/>		
+	</s:BorderContainer>
+	<s:Button id="gr" label="greeting()" click="gr_clickHandler(event)"/>
+	<s:Button id="ur" label="urgentSituation()" click="ur_clickHandler(event)"/>
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			import classes.EnglishPhrases;
+			import classes.PolishPhrases;
+			
+			import interfaces.IPhrases;
+			
+			private var _phrases:IPhrases;
+			
+			protected function application1_creationCompleteHandler(event:FlexEvent):void
+			{
+				_phrases = new EnglishPhrases(); 
+			}
+			
+			protected function gr_clickHandler(event:MouseEvent):void
+			{
+				trace(_phrases.greeting());
+			}
+			
+			protected function ur_clickHandler(event:MouseEvent):void
+			{
+				trace(_phrases.urgentSituation());	
+			}		
+			
+			protected function en_clickHandler(event:MouseEvent):void
+			{
+				_phrases = new EnglishPhrases();
+			}
+			
+			protected function pl_clickHandler(event:MouseEvent):void
+			{
+				_phrases = new PolishPhrases();
+			}
+		]]>
+	</fx:Script>
+</s:Application>
